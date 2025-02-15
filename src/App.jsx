@@ -1,8 +1,11 @@
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useState } from 'react';
 import {Container, Navbar, Nav, Row, Col} from 'react-bootstrap';
 
 function App() {
+
+  let product = useState(["상품"])
 
   return (
     <>
