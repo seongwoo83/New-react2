@@ -74,8 +74,6 @@ function About(){
     <div>
       <h4>회사정보임</h4>
       <Outlet></Outlet> {/* nested Routes를 보여주는 구멍 */}
-      <Outlet></Outlet> {/* nested Routes를 보여주는 구멍 */}
-      <Outlet></Outlet> {/* nested Routes를 보여주는 구멍 */}
     </div>
   )
 }
@@ -83,8 +81,6 @@ function Event(){
   return(
     <div>
       <h4>오늘의 이벤트</h4>
-      <Outlet></Outlet> {/* nested Routes를 보여주는 구멍 */}
-      <Outlet></Outlet> {/* nested Routes를 보여주는 구멍 */}
       <Outlet></Outlet> {/* nested Routes를 보여주는 구멍 */}
     </div>
   )
