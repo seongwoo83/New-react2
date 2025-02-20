@@ -3,4 +3,17 @@
     background-image: url("./bg-150x150.png");
     background-size: cover;
     background-position: center;
+    position: relative;
+}
+.sortbtn{
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+    background-color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    border: none;
+    border-radius: 3px;
+    padding: 5px 12px;
+    cursor: pointer;
 }

@@ -19,6 +19,7 @@ function App() {
 
   // Route - 각 페이지를 의미
 
+
   return (
     <>
     <div className="App">
@@ -37,11 +38,13 @@ function App() {
       <Routes>
         <Route path='/' element={
           <>
-            <div className="main-bg"></div>
+            <div className="main-bg">
+              <button className='sortbtn'>정렬</button>
+            </div>
             <Card shoes={shoes}/>
           </>
           } />
-        <Route path='/detail' element={<Detail shoes={shoes} />} />
+        <Route path='/detail/:id' element={<Detail shoes={shoes} />} />
 
         {/* Nested Routes */}
         {/* 
@@ -85,6 +88,7 @@ function Event(){
     </div>
   )
 }
+
 
 
 export default App
