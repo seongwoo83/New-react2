@@ -1,17 +1,20 @@
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import data from './data';
 import Detail from './routes/Detail';
 import Card from './components/Card';
 import {Container, Navbar, Nav} from 'react-bootstrap';
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
+import axios from 'axios';
 
 function App() {
 
 
   // use~ : Hook
-  let [shoes] = useState(data);
+  let [shoes, setShoes] = useState(data);
+  let [dataIndex, setDataIndex] = useState(2);
+  let [isLoading, setIsLoading] = useState(false);
   let navigate = useNavigate();
 
   //navigate(1) -> 앞으로 한 페이지 이동
@@ -42,6 +45,32 @@ function App() {
               <button className='sortbtn'>정렬</button>
             </div>
             <Card shoes={shoes}/>
+            <button onClick={()=>{
+              setIsLoading(true);
+              axios.get(`https://codingapple1.github.io/shop/data${dataIndex}.json`).then((result)=>{
+                setDataIndex(dataIndex+1);
+                const data = result.data;
+                let copy = [...shoes, ...data];
+                setShoes(copy);
+                setIsLoading(false);
+              }).catch(()=>{
+                setIsLoading(false);
+                alert('데이터가 없습니다.');
+              })
+
+
+              // 기본 JS문법 -> fetch
+              fetch().then((result)=>{
+                JSON.parse(result)
+              })
+            
+
+              axios.post('/aefawf', {"name": "Jeong"}) // POST 전송
+              // 여러개 전송
+              Promise.all([ axios.get('/url1'), axios.get('/url2')]).then(()=>{}) //모두 완료되면 실행
+
+
+            }}>더보기</button><span style={{display: isLoading == false ? 'none' : ''}}>로딩중입니다</span>
           </>
           } />
         <Route path='/detail/:id' element={<Detail shoes={shoes} />} />
