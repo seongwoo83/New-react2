@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Nav } from "react-bootstrap";
 import styled from "styled-components";
 
 
@@ -10,6 +11,7 @@ function Detail(props){
   let [count, setCount] = useState(0);
   let [alert, setAlert] = useState(true);
   let [input, setInput] = useState('');
+  let [tab, setTab] = useState(0);
 
   let {id} = useParams();
   let setProdct = props.shoes.find((v)=> v.id == id)
@@ -68,7 +70,31 @@ function Detail(props){
       }
         
       </div>
+
+      <Nav variant="tabs" defaultActiveKey="link0">
+        <Nav.Item>
+          <Nav.Link eventKey="link0" onClick={()=>setTab(0)}>버튼0</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey="link1" onClick={()=>setTab(1)}>버튼1</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey="link2" onClick={()=>setTab(2)}>버튼2</Nav.Link>
+        </Nav.Item>
+      </Nav>
+      
+      <TabContent tab={tab} />
+      
+      
+
+
     </div> 
+  )
+}
+
+function TabContent({tab}){
+  return (
+    <div>내용{tab}</div>
   )
 }
 
