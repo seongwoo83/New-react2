@@ -1,6 +1,6 @@
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useEffect, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import data from './data';
 import Detail from './routes/Detail';
 import Card from './components/Card';
@@ -8,11 +8,14 @@ import {Container, Navbar, Nav} from 'react-bootstrap';
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
 import axios from 'axios';
 
+export let Context1 = createContext(); // state보관함
+
 function App() {
 
 
   // use~ : Hook
   let [shoes, setShoes] = useState(data);
+  let [stock, setStock] = useState([10, 11, 12]);
   let [dataIndex, setDataIndex] = useState(2);
   let [isLoading, setIsLoading] = useState(false);
   let navigate = useNavigate();
@@ -73,7 +76,11 @@ function App() {
             }}>더보기</button><span style={{display: isLoading == false ? 'none' : ''}}>로딩중입니다</span>
           </>
           } />
-        <Route path='/detail/:id' element={<Detail shoes={shoes} />} />
+        <Route path='/detail/:id' element={
+          <Context1.Provider value={{stock, shoes}}>
+            <Detail shoes={shoes} />
+          </Context1.Provider>
+        } />
 
         {/* Nested Routes */}
         {/* 

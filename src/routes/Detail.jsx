@@ -1,12 +1,15 @@
 /* eslint-disable react/prop-types */
 
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Nav } from "react-bootstrap";
 import styled from "styled-components";
+import { Context1 } from "./../App.jsx"
 
 
 function Detail(props){
+
+  let { stock, shoes } = useContext(Context1); // 보관함 열기
 
   let [count, setCount] = useState(0);
   let [alert, setAlert] = useState(true);
@@ -93,6 +96,7 @@ function Detail(props){
 }
 
 function TabContent({tab}){
+  let {stock} = useContext(Context1);
   return (
     <div>내용{tab}</div>
   )
