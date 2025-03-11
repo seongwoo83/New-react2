@@ -5,6 +5,8 @@ import { useParams } from "react-router-dom";
 import { Nav } from "react-bootstrap";
 import styled from "styled-components";
 import { Context1 } from "./../App.jsx"
+import { useDispatch } from "react-redux";
+import { addItem } from "../store/cartSlice.jsx";
 
 
 function Detail(props){
@@ -15,6 +17,8 @@ function Detail(props){
   let [alert, setAlert] = useState(true);
   let [input, setInput] = useState('');
   let [tab, setTab] = useState(0);
+
+  let dispatch = useDispatch();
 
   let {id} = useParams();
   let setProdct = props.shoes.find((v)=> v.id == id)
@@ -63,7 +67,7 @@ function Detail(props){
             <h4 className="pt-5">{setProdct.title}</h4>
             <p>{setProdct.content}</p>
             <p>{setProdct.price}원</p>
-            <button className="btn btn-danger">주문하기</button> 
+            <button className="btn btn-danger" onClick={()=>{dispatch(addItem(setProdct))}}>주문하기</button> 
           </div>
         </>
         : 
