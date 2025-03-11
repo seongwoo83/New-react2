@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { createContext, useEffect, useState } from 'react';
 import data from './data';
 import Detail from './routes/Detail';
+import Cart from './routes/Cart';
 import Card from './components/Card';
 import {Container, Navbar, Nav} from 'react-bootstrap';
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
@@ -81,6 +82,8 @@ function App() {
             <Detail shoes={shoes} />
           </Context1.Provider>
         } />
+
+        <Route path='/cart' element={<Cart />} />
 
         {/* Nested Routes */}
         {/* 
