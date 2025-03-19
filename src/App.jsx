@@ -6,7 +6,7 @@ import Detail from './routes/Detail';
 import Cart from './routes/Cart';
 import Card from './components/Card';
 import {Container, Navbar, Nav} from 'react-bootstrap';
-import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
+import { Routes, Route, useNavigate, Outlet } from 'react-router-dom';
 import axios from 'axios';
 
 export let Context1 = createContext(); // state보관함
@@ -26,6 +26,12 @@ function App() {
 
   // Route - 각 페이지를 의미
 
+  useEffect(()=>{
+    if(!localStorage.getItem('watched')){
+      let watchedProductList = [];
+      localStorage.setItem('watched', JSON.stringify(watchedProductList), []);
+    }
+  })
 
   return (
     <>

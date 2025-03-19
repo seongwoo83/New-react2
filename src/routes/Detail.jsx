@@ -3,7 +3,6 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Nav } from "react-bootstrap";
-import styled from "styled-components";
 import { Context1 } from "./../App.jsx"
 import { useDispatch } from "react-redux";
 import { addItem } from "../store/cartSlice.jsx";
@@ -37,6 +36,19 @@ function Detail(props){
       window.alert('숫자만 입력가능합니다.');
     }
   }, [input])
+
+  useEffect(()=>{
+    const watchedList = JSON.parse(localStorage.getItem('watched'));
+    let isWatched = false;
+    if(watchedList.length > 0){
+      isWatched = watchedList.includes(setProdct.id)
+    }
+
+    if(!isWatched){
+      watchedList.push(setProdct.id)
+      localStorage.setItem('watched', JSON.stringify(watchedList))
+    }
+  })
 
   useEffect(()=>{}) // 1. 재렌더링마다 코드실행
   useEffect(()=>{}, []) // 2. mount시 1회 코드실행
