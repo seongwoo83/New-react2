@@ -8,6 +8,7 @@ import Card from './components/Card';
 import {Container, Navbar, Nav} from 'react-bootstrap';
 import { Routes, Route, useNavigate, Outlet } from 'react-router-dom';
 import axios from 'axios';
+import { useQuery } from '@tanstack/react-query';
 
 export let Context1 = createContext(); // state보관함
 
@@ -16,7 +17,7 @@ function App() {
 
   // use~ : Hook
   let [shoes, setShoes] = useState(data);
-  let [stock, setStock] = useState([10, 11, 12]);
+  let [stock] = useState([10, 11, 12]);
   let [dataIndex, setDataIndex] = useState(2);
   let [isLoading, setIsLoading] = useState(false);
   let navigate = useNavigate();
@@ -33,6 +34,15 @@ function App() {
     }
   })
 
+  let result = useQuery({queryKey: 'getMember', queryFn : ()=>{
+    return axios.get('https://codingapple1.github.io/userdata.json').then((a)=>{
+      return a.data;      
+    });
+  }})
+
+  console.log(result.data);
+  
+
   return (
     <>
     <div className="App">
@@ -43,6 +53,10 @@ function App() {
           <Nav className="me-auto">
             <Nav.Link onClick={()=>{navigate("/")}}>Home</Nav.Link>
             <Nav.Link onClick={()=>{navigate("/detail")}}>Detail</Nav.Link>
+          </Nav>
+
+          <Nav className='ms-auto'>
+            { result.isLoading ? '로딩중' : result.data.name}
           </Nav>
         </Container>
       </Navbar>
