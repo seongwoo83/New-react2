@@ -36,13 +36,13 @@ function App() {
     }
   })
 
-  let result = useQuery({queryKey: 'getMember', queryFn : ()=>{
-    return axios.get('https://codingapple1.github.io/userdata.json').then((a)=>{
-      return a.data;      
-    });
-  }})
+  // let result = useQuery({queryKey: 'getMember', queryFn : ()=>{
+  //   return axios.get('https://codingapple1.github.io/userdata.json').then((a)=>{
+  //     return a.data;      
+  //   });
+  // }})
 
-  console.log(result.data);
+  // console.log(result.data);
   
 
   return (
@@ -58,7 +58,7 @@ function App() {
           </Nav>
 
           <Nav className='ms-auto'>
-            { result.isLoading ? '로딩중' : result.data.name}
+            {/* { result.isLoading ? '로딩중' : result.data.name} */}
           </Nav>
         </Container>
       </Navbar>

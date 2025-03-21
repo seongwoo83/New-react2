@@ -6,6 +6,8 @@ import { Nav } from "react-bootstrap";
 import { Context1 } from "./../App.jsx"
 import { useDispatch } from "react-redux";
 import { addItem } from "../store/cartSlice.jsx";
+import { useLike } from "../hooks/like.jsx";
+import axios from "axios";
 
 
 function Detail(props){
@@ -57,6 +59,8 @@ function Detail(props){
     return (()=>{})
   })  // 4. useEffect실행 전에 실행됨
 
+  let [like, addLike] = useLike();
+
   return (
     <div className="container">
       <div className="row">
@@ -80,6 +84,7 @@ function Detail(props){
             <p>{setProdct.content}</p>
             <p>{setProdct.price}원</p>
             <button className="btn btn-danger" onClick={()=>{dispatch(addItem(setProdct))}}>주문하기</button> 
+            &nbsp;&nbsp;&nbsp;<span>{like} <span onClick={()=>{addLike()}}>♥</span></span>
           </div>
         </>
         : 
