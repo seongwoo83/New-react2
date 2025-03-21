@@ -7,6 +7,7 @@ import {Container, Navbar, Nav} from 'react-bootstrap';
 import { Routes, Route, useNavigate, Outlet } from 'react-router-dom';
 import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
+import Transition from './routes/Transition';
 
 export let Context1 = createContext(); // state보관함
 
@@ -115,6 +116,7 @@ function App() {
             <Route path='one' element={<div>첫 주문시 양배추즙 서비스</div>} /> {/* /about/member */}
             <Route path='two' element={<div>생일기념 쿠폰받기</div>} /> {/* /about/location */}
           </Route>
+          <Route path='/transition' element={<Transition/>} />
           <Route path='*' element={<div>존재하지 않는 페이지 입니다.</div>} />
         </Routes>
       </Suspense>
