@@ -7,7 +7,7 @@ import { Context1 } from "./../App.jsx"
 import { useDispatch } from "react-redux";
 import { addItem } from "../store/cartSlice.jsx";
 import { useLike } from "../hooks/like.jsx";
-import axios from "axios";
+import { useGetUserName } from "../hooks/getUserName.jsx";
 
 
 function Detail(props){
@@ -60,6 +60,7 @@ function Detail(props){
   })  // 4. useEffect실행 전에 실행됨
 
   let [like, addLike] = useLike();
+  let userName = useGetUserName();
 
   return (
     <div className="container">
@@ -70,7 +71,7 @@ function Detail(props){
           {
             alert == true
           ? <div className="alert alert-warning">
-              2초이내 구매시 할인
+              2초이내 구매시 할인{userName}
             </div>
           : null
           }
